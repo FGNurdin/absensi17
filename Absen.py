@@ -14,145 +14,168 @@ print('''pelajaran apa bro
 9. pjok
 10. tik
 11. sunda''')
-x = int(input())
+x = int(input("Input: "))
 
+# Nama & Kelas
+kelas96 = '//*[@id="mG61Hd"]/div[2]/div[1]/div[2]/div/div/div/div[2]/div/div[2]/div[8]'
+nama = '//*[@id="mG61Hd"]/div[2]/div[1]/div[2]/div[2]/div/div/div[2]/div/div[2]/div[9]'
+# Pelajaran
+agama = '//*[@id="mG61Hd"]/div[2]/div[1]/div[2]/div[2]/div/div/div[2]/div/div[2]/div[3]'
+pkn = '//*[@id="mG61Hd"]/div[2]/div[1]/div[2]/div[2]/div/div/div[2]/div/div[2]/div[4]'
+indo = '//*[@id="mG61Hd"]/div[2]/div[1]/div[2]/div[2]/div/div/div[2]/div/div[2]/div[5]'
+mtk = '//*[@id="mG61Hd"]/div[2]/div[1]/div[2]/div[2]/div/div/div[2]/div/div[2]/div[6]'
+ipa = '//*[@id="mG61Hd"]/div[2]/div[1]/div[2]/div[2]/div/div/div[2]/div/div[2]/div[7]'
+ips = '//*[@id="mG61Hd"]/div[2]/div[1]/div[2]/div[2]/div/div/div[2]/div/div[2]/div[8]'
+eng = '//*[@id="mG61Hd"]/div[2]/div[1]/div[2]/div[2]/div/div/div[2]/div/div[2]/div[9]'
+sbd = '//*[@id="mG61Hd"]/div[2]/div[1]/div[2]/div[2]/div/div/div[2]/div/div[2]/div[10]'
+pjok = '//*[@id="mG61Hd"]/div[2]/div[1]/div[2]/div[2]/div/div/div[2]/div/div[2]/div[11]'
+tik = '//*[@id="mG61Hd"]/div[2]/div[1]/div[2]/div[2]/div/div/div[2]/div/div[2]/div[12]'
+sunda = '//*[@id="mG61Hd"]/div[2]/div[1]/div[2]/div[2]/div/div/div[2]/div/div[2]/div[13]'
+
+# Mulai web
+print("Memulai Web Browser")
 web = webdriver.Chrome()
-web.get('https://docs.google.com/forms/d/e/1FAIpQLSfhQ1Nxrrzbo1kv_yZW5KoCTTpSqd5htdQIhT5tAIFFqM_few/viewform?usp=sf_link')
+web.get('https://docs.google.com/forms/d/e/1FAIpQLSfm01iI_3HfT1DXHdgFa30bY0ooVcSp0SRHemh_klIIXo8-Jw/viewform?embedded=true')
 
-
-nextButton = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div/div[3]/div/div/div/span')
+# Pilih Kelas
 time.sleep(2)
-kelas = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div/div[2]/div/div/div/div[2]/div/div[1]/div[1]/div[1]')
+kelas = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div[1]/div[2]/div/div/div/div[2]/div/div[1]/div[1]/div[1]')
 kelas.click()
-
-
-time.sleep(2)
-kelas96 = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div/div[2]/div/div/div/div[2]/div/div[2]/div[8]')
-kelas96.click()
-nextButton.click()
-print('kelas udah bos')
-
-nextButton = web.find_element_by_class_name("appsMaterialWizButtonPaperbuttonContent")
-nama = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div/div[2]/div[2]/div/div/div[2]/div/div[1]/div[1]/div[1]')
-nama.click()
-
-time.sleep(2)
-fatih = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div/div[2]/div[2]/div/div/div[2]/div/div[2]/div[15]')
-fatih.click()
-web.execute_script("window.scrollTo(0, document.body.scrollHeight);")
 time.sleep(1)
-nextButton2 = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div/div[3]/div/div/div[2]/span')
-nextButton2.click()
-print('nama juga udah bos')
+kelas96 = web.find_element_by_xpath(kelas96)
+kelas96.click()
+time.sleep(1)
+berikutnya = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div[1]/div[3]/div/div/div/span')
+berikutnya.click()
+print("Selesai memilih kelas")
+
+# Pilih Nama
 time.sleep(2)
-
-pelajaran = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div/div[2]/div[2]/div/div/div[2]/div/div[1]/div[1]/div[1]')
-pelajaran.click()
+pilihNama = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div[1]/div[2]/div[2]/div/div/div[2]/div/div[1]/div[1]/div[1]')
+pilihNama.click()
+time.sleep(1)
+nama = web.find_element_by_xpath(nama)
+nama.click()
 time.sleep(2)
+berikutnya = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div[1]/div[3]/div/div/div[2]/span')
+berikutnya.click()
+print("Selesai memilih nama")
 
+# Pilih Pelajaran
+time.sleep(2)
+pilihPelajaran = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div[1]/div[2]/div[2]/div/div/div[2]/div/div[1]/div[1]/div[1]')
+pilihPelajaran.click()
+time.sleep(1)
 
-
-
-
-
-
-print('bp1')
-
-
-
-
-hadir = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div/div[2]/div[3]/div/div/div[2]/div/div[1]/div[1]/div[1]')
-print('bp2')
+# Pelajaran
 if x == 1:
-    print(x)
-    agama = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div/div[2]/div[2]/div/div/div[2]/div/div[2]/div[3]')
+    agama = web.find_element_by_xpath(agama)
     agama.click()
-    web.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+    time.sleep(1)
+    pilihHadir = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div[1]/div[2]/div[3]/div/div/div[2]/div/div[1]/div[1]/div[1]')
+    pilihHadir.click()
+    time.sleep(1)
+    hadir = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div[1]/div[2]/div[3]/div/div/div[2]/div/div[2]/div[3]')
     hadir.click()
-    hadirOpt = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div/div[2]/div[3]/div/div/div[2]/div/div[1]/div[1]/div[1]')
-    hadirOpt.click()
 
-if x == 2:
-    print(x)
-    pkn = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div/div[2]/div[2]/div/div/div[2]/div/div[2]/div[4]')
+elif x == 2:
+    pkn = web.find_element_by_xpath(pkn)
     pkn.click()
-    web.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+    time.sleep(1)
+    pilihHadir = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div[1]/div[2]/div[3]/div/div/div[2]/div/div[1]/div[1]/div[1]')
+    pilihHadir.click()
+    time.sleep(1)
+    hadir = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div[1]/div[2]/div[3]/div/div/div[2]/div/div[2]/div[3]')
     hadir.click()
-    hadirOpt = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div/div[2]/div[3]/div/div/div[2]/div/div[1]/div[1]/div[1]')
-    hadirOpt.click()
 
-if x == 3:  
-    print(x)
-    indo = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div/div[2]/div[2]/div/div/div[2]/div/div[2]/div[5]')
+elif x == 3:
+    indo = web.find_element_by_xpath(indo)
     indo.click()
-    web.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+    time.sleep(1)
+    pilihHadir = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div[1]/div[2]/div[3]/div/div/div[2]/div/div[1]/div[1]/div[1]')
+    pilihHadir.click()
+    time.sleep(1)
+    hadir = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div[1]/div[2]/div[3]/div/div/div[2]/div/div[2]/div[3]')
     hadir.click()
-    hadirOpt = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div/div[2]/div[3]/div/div/div[2]/div/div[1]/div[1]/div[1]')
-    hadirOpt.click()
 
-if x == 4:
-    mtk = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div/div[2]/div[2]/div/div/div[2]/div/div[2]/div[6]')
+elif x == 4:
+    mtk = web.find_element_by_xpath(mtk)
     mtk.click()
-    web.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+    time.sleep(1)
+    pilihHadir = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div[1]/div[2]/div[3]/div/div/div[2]/div/div[1]/div[1]/div[1]')
+    pilihHadir.click()
+    time.sleep(1)
+    hadir = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div[1]/div[2]/div[3]/div/div/div[2]/div/div[2]/div[3]')
     hadir.click()
-    hadirOpt = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div/div[2]/div[3]/div/div/div[2]/div/div[1]/div[1]/div[1]')
-    hadirOpt.click()
 
-if x == 5:
-    ipa = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div/div[2]/div[2]/div/div/div[2]/div/div[2]/div[7]')
+elif x == 5:
+    ipa = web.find_element_by_xpath(ipa)
     ipa.click()
-    web.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+    time.sleep(1)
+    pilihHadir = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div[1]/div[2]/div[3]/div/div/div[2]/div/div[1]/div[1]/div[1]')
+    pilihHadir.click()
+    time.sleep(1)
+    hadir = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div[1]/div[2]/div[3]/div/div/div[2]/div/div[2]/div[3]')
     hadir.click()
-    hadirOpt = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div/div[2]/div[3]/div/div/div[2]/div/div[1]/div[1]/div[1]')
-    hadirOpt.click()
 
-if x == 6:
-    ips = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div/div[2]/div[2]/div/div/div[2]/div/div[2]/div[8]')
+elif x == 6:
+    ips = web.find_element_by_xpath(ips)
     ips.click()
-    web.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+    time.sleep(1)
+    pilihHadir = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div[1]/div[2]/div[3]/div/div/div[2]/div/div[1]/div[1]/div[1]')
+    pilihHadir.click()
+    time.sleep(1)
+    hadir = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div[1]/div[2]/div[3]/div/div/div[2]/div/div[2]/div[3]')
     hadir.click()
-    hadirOpt = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div/div[2]/div[3]/div/div/div[2]/div/div[1]/div[1]/div[1]')
-    hadirOpt.click()
 
-if x == 7:
-    inggris = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div/div[2]/div[2]/div/div/div[2]/div/div[2]/div[9]')
-    inggris.click()
-    web.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+elif x == 7:
+    eng = web.find_element_by_xpath(eng)
+    eng.click()
+    time.sleep(1)
+    pilihHadir = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div[1]/div[2]/div[3]/div/div/div[2]/div/div[1]/div[1]/div[1]')
+    pilihHadir.click()
+    time.sleep(1)
+    hadir = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div[1]/div[2]/div[3]/div/div/div[2]/div/div[2]/div[3]')
     hadir.click()
-    hadirOpt = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div/div[2]/div[3]/div/div/div[2]/div/div[1]/div[1]/div[1]')
-    hadirOpt.click()
 
-if x == 8:
-    sbd = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div/div[2]/div[2]/div/div/div[2]/div/div[2]/div[10]')
+elif x == 8:
+    sbd = web.find_element_by_xpath(sbd)
     sbd.click()
-    web.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+    time.sleep(1)
+    pilihHadir = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div[1]/div[2]/div[3]/div/div/div[2]/div/div[1]/div[1]/div[1]')
+    pilihHadir.click()
+    time.sleep(1)
+    hadir = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div[1]/div[2]/div[3]/div/div/div[2]/div/div[2]/div[3]')
     hadir.click()
-    hadirOpt = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div/div[2]/div[3]/div/div/div[2]/div/div[1]/div[1]/div[1]')
-    hadirOpt.click()
 
-if x == 9:
-    pjok = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div/div[2]/div[2]/div/div/div[2]/div/div[2]/div[11]')
+elif x == 9:
+    pjok = web.find_element_by_xpath(pjok)
     pjok.click()
-    web.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+    time.sleep(1)
+    pilihHadir = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div[1]/div[2]/div[3]/div/div/div[2]/div/div[1]/div[1]/div[1]')
+    pilihHadir.click()
+    time.sleep(1)
+    hadir = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div[1]/div[2]/div[3]/div/div/div[2]/div/div[2]/div[3]')
     hadir.click()
-    hadirOpt = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div/div[2]/div[3]/div/div/div[2]/div/div[1]/div[1]/div[1]')
-    hadirOpt.click()
 
-if x == 10:
-    tik = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div/div[2]/div[2]/div/div/div[2]/div/div[2]/div[12]')
+elif x == 10:
+    tik = web.find_element_by_xpath(tik)
     tik.click()
-    web.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+    time.sleep(1)
+    pilihHadir = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div[1]/div[2]/div[3]/div/div/div[2]/div/div[1]/div[1]/div[1]')
+    pilihHadir.click()
+    time.sleep(1)
+    hadir = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div[1]/div[2]/div[3]/div/div/div[2]/div/div[2]/div[3]')
     hadir.click()
-    hadirOpt = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div/div[2]/div[3]/div/div/div[2]/div/div[1]/div[1]/div[1]')
-    hadirOpt.click()
 
-if x == 11:
-    sunda = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div/div[2]/div[2]/div/div/div[2]/div/div[2]/div[13]')
+elif x == 11:
+    sunda = web.find_element_by_xpath(sunda)
     sunda.click()
-    web.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+    time.sleep(1)
+    pilihHadir = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div[1]/div[2]/div[3]/div/div/div[2]/div/div[1]/div[1]/div[1]')
+    pilihHadir.click()
+    time.sleep(1)
+    hadir = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div[1]/div[2]/div[3]/div/div/div[2]/div/div[2]/div[3]')
     hadir.click()
-    hadirOpt = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div/div[2]/div[3]/div/div/div[2]/div/div[1]/div[1]/div[1]')
-    hadirOpt.click()    
 
-
-    
+print("Selesai memilih pelajaran")
