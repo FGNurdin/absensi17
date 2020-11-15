@@ -1,6 +1,14 @@
 from selenium import webdriver
 from selenium.webdriver.support.ui import Select
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 import time
+from datetime import datetime
+from termcolor import colored
+import bcolors
+
 
 print('''pelajaran apa bro
 1. Agama
@@ -16,10 +24,9 @@ print('''pelajaran apa bro
 11. sunda''')
 x = int(input("Input: "))
 
-# Nama & Kelas
+# //////////////////////// XPATH ////////////////////////
 kelas96 = '//*[@id="mG61Hd"]/div[2]/div[1]/div[2]/div/div/div/div[2]/div/div[2]/div[8]'
 nama = '//*[@id="mG61Hd"]/div[2]/div[1]/div[2]/div[2]/div/div/div[2]/div/div[2]/div[9]'
-# Pelajaran
 agama = '//*[@id="mG61Hd"]/div[2]/div[1]/div[2]/div[2]/div/div/div[2]/div/div[2]/div[3]'
 pkn = '//*[@id="mG61Hd"]/div[2]/div[1]/div[2]/div[2]/div/div/div[2]/div/div[2]/div[4]'
 indo = '//*[@id="mG61Hd"]/div[2]/div[1]/div[2]/div[2]/div/div/div[2]/div/div[2]/div[5]'
@@ -31,151 +38,240 @@ sbd = '//*[@id="mG61Hd"]/div[2]/div[1]/div[2]/div[2]/div/div/div[2]/div/div[2]/d
 pjok = '//*[@id="mG61Hd"]/div[2]/div[1]/div[2]/div[2]/div/div/div[2]/div/div[2]/div[11]'
 tik = '//*[@id="mG61Hd"]/div[2]/div[1]/div[2]/div[2]/div/div/div[2]/div/div[2]/div[12]'
 sunda = '//*[@id="mG61Hd"]/div[2]/div[1]/div[2]/div[2]/div/div/div[2]/div/div[2]/div[13]'
+kelas = '//*[@id="mG61Hd"]/div[2]/div[1]/div[2]/div/div/div/div[2]/div/div[1]/div[1]/div[1]'
+nextbutton1 = '//*[@id="mG61Hd"]/div[2]/div[1]/div[3]/div/div/div/span/span'
+pilihNama = '//*[@id="mG61Hd"]/div[2]/div[1]/div[2]/div[2]/div/div/div[2]/div/div[1]/div[1]/div[1]' 
+berikutnya = '//*[@id="mG61Hd"]/div[2]/div[1]/div[3]/div/div/div[2]/span'
+pilihPelajaran = '//*[@id="mG61Hd"]/div[2]/div[1]/div[2]/div[2]/div/div/div[2]/div/div[1]/div[1]/div[1]'
+pilihHadir = '//*[@id="mG61Hd"]/div[2]/div[1]/div[2]/div[3]/div/div/div[2]/div/div[1]/div[1]/div[1]'
+hadir = '//*[@id="mG61Hd"]/div[2]/div[1]/div[2]/div[3]/div/div/div[2]/div/div[2]/div[3]'
+submit = '//*[@id="mG61Hd"]/div[2]/div/div[3]/div/div/div[2]/span'
 
-# Mulai web
+#//////////////////////// Mulai web ////////////////////////
 print("Memulai Web Browser")
 web = webdriver.Chrome()
 web.get('https://docs.google.com/forms/d/e/1FAIpQLSfm01iI_3HfT1DXHdgFa30bY0ooVcSp0SRHemh_klIIXo8-Jw/viewform?embedded=true')
+time.sleep(0.7)
 
-# Pilih Kelas
-time.sleep(2)
-kelas = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div[1]/div[2]/div/div/div/div[2]/div/div[1]/div[1]/div[1]')
+now = datetime.now().time()
+    
+#//////////////////////// Pilih Kelas////////////////////////
+kelas = WebDriverWait(web, 10).until(
+    EC.element_to_be_clickable((By.XPATH, kelas))
+)
 kelas.click()
-time.sleep(1)
-kelas96 = web.find_element_by_xpath(kelas96)
+
+kelas96 = WebDriverWait(web, 10).until(
+    EC.element_to_be_clickable((By.XPATH, kelas96))
+)
 kelas96.click()
-time.sleep(1)
-berikutnya = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div[1]/div[3]/div/div/div/span')
-berikutnya.click()
-print("Selesai memilih kelas")
+time.sleep(0.7)
 
-# Pilih Nama
-time.sleep(2)
-pilihNama = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div[1]/div[2]/div[2]/div/div/div[2]/div/div[1]/div[1]/div[1]')
+nextbutton2 = WebDriverWait(web, 10).until(
+    EC.element_to_be_clickable((By.XPATH, nextbutton1))
+)
+web.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+nextbutton2.click()
+
+print('[', now, ']', 'KELAS SELECTED')
+
+#////////////////////////CHOOSING NAME////////////////////////
+pilihNama = WebDriverWait(web, 10).until(
+    EC.element_to_be_clickable((By.XPATH, pilihNama))
+)
 pilihNama.click()
-time.sleep(1)
-nama = web.find_element_by_xpath(nama)
+
+nama = WebDriverWait(web, 10).until(
+    EC.visibility_of_element_located((By.XPATH, nama))
+)
 nama.click()
-time.sleep(2)
-berikutnya = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div[1]/div[3]/div/div/div[2]/span')
+time.sleep(0.7)
+
+berikutnya = WebDriverWait(web, 10).until(
+    EC.visibility_of_element_located((By.XPATH, berikutnya))
+)
 berikutnya.click()
-print("Selesai memilih nama")
 
-# Pilih Pelajaran
-time.sleep(2)
-pilihPelajaran = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div[1]/div[2]/div[2]/div/div/div[2]/div/div[1]/div[1]/div[1]')
+now2 = datetime.now().time()
+print('[', now2, ']', 'NAME SELECTED')
+
+# ////////////////////////Pilih Pelajaran////////////////////////
+pilihPelajaran = WebDriverWait(web, 10).until(
+    EC.element_to_be_clickable((By.XPATH, pilihPelajaran))
+)
 pilihPelajaran.click()
-time.sleep(1)
 
-# Pelajaran
+# ////////////////////////- if Pelajaran////////////////////////
 if x == 1:
-    agama = web.find_element_by_xpath(agama)
+    agama = WebDriverWait(web, 10).until(
+        EC.element_to_be_clickable((By.XPATH, agama))
+    )
     agama.click()
-    time.sleep(1)
-    pilihHadir = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div[1]/div[2]/div[3]/div/div/div[2]/div/div[1]/div[1]/div[1]')
+    time.sleep(0.7)
+    pilihHadir = WebDriverWait(web, 10).until(
+        EC.element_to_be_clickable((By.XPATH, pilihHadir))
+    )
     pilihHadir.click()
-    time.sleep(1)
-    hadir = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div[1]/div[2]/div[3]/div/div/div[2]/div/div[2]/div[3]')
-    hadir.click()
+    hadir = WebDriverWait(web, 10).until(
+        EC.element_to_be_clickable((By.XPATH, hadir))
+    )
 
 elif x == 2:
-    pkn = web.find_element_by_xpath(pkn)
+    pkn = WebDriverWait(web, 10).until(
+        EC.element_to_be_clickable((By.XPATH, pkn))
+    )
     pkn.click()
-    time.sleep(1)
-    pilihHadir = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div[1]/div[2]/div[3]/div/div/div[2]/div/div[1]/div[1]/div[1]')
+    time.sleep(0.7)
+    pilihHadir = WebDriverWait(web, 10).until(
+        EC.element_to_be_clickable((By.XPATH, pilihHadir))
+    )
     pilihHadir.click()
-    time.sleep(1)
-    hadir = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div[1]/div[2]/div[3]/div/div/div[2]/div/div[2]/div[3]')
+    hadir = WebDriverWait(web, 10).until(
+        EC.element_to_be_clickable((By.XPATH, hadir))
+    )
     hadir.click()
 
 elif x == 3:
-    indo = web.find_element_by_xpath(indo)
+    indo = WebDriverWait(web, 10).until(
+        EC.element_to_be_clickable((By.XPATH, indo))
+    )
     indo.click()
-    time.sleep(1)
-    pilihHadir = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div[1]/div[2]/div[3]/div/div/div[2]/div/div[1]/div[1]/div[1]')
+    time.sleep(0.7)
+    pilihHadir = WebDriverWait(web, 10).until(
+        EC.element_to_be_clickable((By.XPATH, pilihHadir))
+    )
     pilihHadir.click()
-    time.sleep(1)
-    hadir = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div[1]/div[2]/div[3]/div/div/div[2]/div/div[2]/div[3]')
+    hadir = WebDriverWait(web, 10).until(
+        EC.element_to_be_clickable((By.XPATH, hadir))
+    )
     hadir.click()
 
 elif x == 4:
-    mtk = web.find_element_by_xpath(mtk)
+    mtk = WebDriverWait(web, 10).until(
+        EC.element_to_be_clickable((By.XPATH, mtk))
+    )
     mtk.click()
-    time.sleep(1)
-    pilihHadir = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div[1]/div[2]/div[3]/div/div/div[2]/div/div[1]/div[1]/div[1]')
+    time.sleep(0.7)
+    pilihHadir = WebDriverWait(web, 10).until(
+        EC.element_to_be_clickable((By.XPATH, pilihHadir))
+    )
     pilihHadir.click()
-    time.sleep(1)
-    hadir = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div[1]/div[2]/div[3]/div/div/div[2]/div/div[2]/div[3]')
+    hadir = WebDriverWait(web, 10).until(
+        EC.element_to_be_clickable((By.XPATH, hadir))
+    )
     hadir.click()
 
 elif x == 5:
-    ipa = web.find_element_by_xpath(ipa)
+    ipa = WebDriverWait(web, 10).until(
+        EC.element_to_be_clickable((By.XPATH, ipa))
+    )
     ipa.click()
-    time.sleep(1)
-    pilihHadir = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div[1]/div[2]/div[3]/div/div/div[2]/div/div[1]/div[1]/div[1]')
+    time.sleep(0.7)
+    pilihHadir = WebDriverWait(web, 10).until(
+        EC.element_to_be_clickable((By.XPATH, pilihHadir))
+    )
     pilihHadir.click()
-    time.sleep(1)
-    hadir = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div[1]/div[2]/div[3]/div/div/div[2]/div/div[2]/div[3]')
+    hadir = WebDriverWait(web, 10).until(
+        EC.element_to_be_clickable((By.XPATH, hadir))
+    )
     hadir.click()
 
 elif x == 6:
-    ips = web.find_element_by_xpath(ips)
+    ips = WebDriverWait(web, 10).until(
+        EC.element_to_be_clickable((By.XPATH, ips))
+    )
     ips.click()
-    time.sleep(1)
-    pilihHadir = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div[1]/div[2]/div[3]/div/div/div[2]/div/div[1]/div[1]/div[1]')
+    time.sleep(0.7)
+    pilihHadir = WebDriverWait(web, 10).until(
+        EC.element_to_be_clickable((By.XPATH, pilihHadir))
+    )
     pilihHadir.click()
-    time.sleep(1)
-    hadir = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div[1]/div[2]/div[3]/div/div/div[2]/div/div[2]/div[3]')
+    hadir = WebDriverWait(web, 10).until(
+        EC.element_to_be_clickable((By.XPATH, hadir))
+    )
     hadir.click()
 
 elif x == 7:
-    eng = web.find_element_by_xpath(eng)
+    eng = WebDriverWait(web, 10).until(
+        EC.element_to_be_clickable((By.XPATH, eng))
+    )
     eng.click()
-    time.sleep(1)
-    pilihHadir = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div[1]/div[2]/div[3]/div/div/div[2]/div/div[1]/div[1]/div[1]')
+    time.sleep(0.7)
+    pilihHadir = WebDriverWait(web, 10).until(
+        EC.element_to_be_clickable((By.XPATH, pilihHadir))
+    )
     pilihHadir.click()
-    time.sleep(1)
-    hadir = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div[1]/div[2]/div[3]/div/div/div[2]/div/div[2]/div[3]')
+    hadir = WebDriverWait(web, 10).until(
+        EC.element_to_be_clickable((By.XPATH, hadir))
+    )
     hadir.click()
 
 elif x == 8:
-    sbd = web.find_element_by_xpath(sbd)
+    sbd = WebDriverWait(web, 10).until(
+        EC.element_to_be_clickable((By.XPATH, sbd))
+    )
     sbd.click()
-    time.sleep(1)
-    pilihHadir = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div[1]/div[2]/div[3]/div/div/div[2]/div/div[1]/div[1]/div[1]')
+    time.sleep(0.7)
+    pilihHadir = WebDriverWait(web, 10).until(
+        EC.element_to_be_clickable((By.XPATH, pilihHadir))
+    )
     pilihHadir.click()
-    time.sleep(1)
-    hadir = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div[1]/div[2]/div[3]/div/div/div[2]/div/div[2]/div[3]')
+    hadir = WebDriverWait(web, 10).until(
+        EC.element_to_be_clickable((By.XPATH, hadir))
+    )
     hadir.click()
 
 elif x == 9:
-    pjok = web.find_element_by_xpath(pjok)
+    pjok = WebDriverWait(web, 10).until(
+        EC.element_to_be_clickable((By.XPATH, pjok))
+    )
     pjok.click()
-    time.sleep(1)
-    pilihHadir = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div[1]/div[2]/div[3]/div/div/div[2]/div/div[1]/div[1]/div[1]')
+    time.sleep(0.7)
+    pilihHadir = WebDriverWait(web, 10).until(
+        EC.element_to_be_clickable((By.XPATH, pilihHadir))
+    )
     pilihHadir.click()
-    time.sleep(1)
-    hadir = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div[1]/div[2]/div[3]/div/div/div[2]/div/div[2]/div[3]')
+    hadir = WebDriverWait(web, 10).until(
+        EC.element_to_be_clickable((By.XPATH, hadir))
+    )
     hadir.click()
 
 elif x == 10:
-    tik = web.find_element_by_xpath(tik)
+    tik = WebDriverWait(web, 10).until(
+        EC.element_to_be_clickable((By.XPATH, tik))
+    )
     tik.click()
-    time.sleep(1)
-    pilihHadir = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div[1]/div[2]/div[3]/div/div/div[2]/div/div[1]/div[1]/div[1]')
+    time.sleep(0.7)
+    pilihHadir = WebDriverWait(web, 10).until(
+        EC.element_to_be_clickable((By.XPATH, pilihHadir))
+    )
     pilihHadir.click()
-    time.sleep(1)
-    hadir = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div[1]/div[2]/div[3]/div/div/div[2]/div/div[2]/div[3]')
+    hadir = WebDriverWait(web, 10).until(
+        EC.element_to_be_clickable((By.XPATH, hadir))
+    )
     hadir.click()
 
 elif x == 11:
-    sunda = web.find_element_by_xpath(sunda)
+    sunda = WebDriverWait(web, 10).until(
+        EC.element_to_be_clickable((By.XPATH, sunda))
+    )
     sunda.click()
-    time.sleep(1)
-    pilihHadir = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div[1]/div[2]/div[3]/div/div/div[2]/div/div[1]/div[1]/div[1]')
+    time.sleep(0.7)
+    pilihHadir = WebDriverWait(web, 10).until(
+        EC.element_to_be_clickable((By.XPATH, pilihHadir))
+    )
     pilihHadir.click()
-    time.sleep(1)
-    hadir = web.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div[1]/div[2]/div[3]/div/div/div[2]/div/div[2]/div[3]')
-    hadir.click()
+    hadir = WebDriverWait(web, 10).until(
+        EC.element_to_be_clickable((By.XPATH, hadir))
+    )
+    hadir.click()    
 
-print("Selesai memilih pelajaran")
+
+#////////////////////////submit////////////////////////
+submit = WebDriverWait(web, 10).until(
+    EC.element_to_be_clickable((By.XPATH, submit))
+)
+#submit.click()
+now3 = datetime.now().time()
+print('[', now3, ']', 'SUBMITTED')
+
