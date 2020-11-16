@@ -6,8 +6,6 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
 from datetime import datetime
-from termcolor import colored
-import bcolors
 
 print('''hari apa bro
 1. Senin
